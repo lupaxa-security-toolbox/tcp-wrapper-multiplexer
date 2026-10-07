@@ -42,6 +42,23 @@ Filters run in the order listed. Each filter is called as:
 
 A filter that is missing or not executable is skipped.
 
+## Available Filters
+
+These wrappers already work with the multiplexer. Install one, then add its executable name to `FILTERS`.
+
+| Filter                                                                                                    | Name in `FILTERS` | What it Does                              |
+| --------------------------------------------------------------------------------------------------------- | ----------------- | ----------------------------------------- |
+| [Tcp Wrapper ASN Filter](https://github.com/lupaxa-security-toolbox/tcp-wrapper-asn-filter)               | `asn-filter`      | Allows or denies a connection by ASN.     |
+| [Tcp Wrapper Country Filter](https://github.com/lupaxa-security-toolbox/tcp-wrapper-country-filter)       | `country-filter`  | Allows or denies a connection by country. |
+
+## Write Your Own
+
+[Tcp Wrapper Template](https://github.com/lupaxa-security-toolbox/tcp-wrapper-template) is the starting point for a wrapper of your own.
+
+A wrapper can be written in any language. The multiplexer runs the installed file directly, so Bash, Python, Ruby, and other executables all work. The template supplies a Bash script and a Python script to get you started.
+
+Copy `src/template.sh` or `src/template.py`, name the copy for the check you want, and add that installed name to `FILTERS`.
+
 ## TCP Wrapper Order
 
 TCP Wrappers read `/etc/hosts.allow` first, then `/etc/hosts.deny`. Anything not handled in `hosts.allow` falls through to `hosts.deny`.
